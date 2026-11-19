@@ -13,20 +13,34 @@ public class main extends NextOpMode {
         super(robot);
         this.robot = robot;
     }
+    boolean RampUp = true;
+
+    @Override
+    public void start() {
+        robot.Transfer.RampUp().schedule();
+    }
 
 
     @Override
     public void periodic() {
         Telemetry.log("Status", "Running");
         if (gamepad1.xWasPressed()) {
-            robot.testa.run().schedule();
+            if (RampUp) {
+                robot.Transfer.RampDown().schedule();
+            } else {
+                robot.Transfer.RampUp().schedule();
+            }
         }
 
-        if (gamepad1.aWasPressed()) {
-            robot.testa.stop().schedule();
+        if (gamepad1.right_trigger > 0.8) {
+            robot.Shooter.Shoot();
         }
-        if (gamepad1.bWasPressed()) {
-            robot.testa.reverse().schedule();
-        }
+
+
+
     }
+
+
+
+
 }

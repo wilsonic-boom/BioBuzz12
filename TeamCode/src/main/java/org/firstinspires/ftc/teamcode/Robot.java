@@ -7,10 +7,12 @@ import dev.nextftc.robot.NextRobot;
 
 public class Robot implements NextRobot {
     public final testsubsystem testa = new testsubsystem();
+    public final Shooter Shooter = new Shooter();
+    public final Transfer Transfer = new Transfer();
 
 
     public void periodic() {}
     public Set<Mechanism> getMechanisms() {
-        return Set.of(testa);
+        return Set.of(testa,Shooter,Transfer);
     }
 }
